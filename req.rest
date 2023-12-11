@@ -1,0 +1,2 @@
+GET http://localhost:8000/home
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MmJjOTQ3MjI3ZDRjOGY0ZjY2ZjQyYyIsImlhdCI6MTY5NzM2ODQxM30.Ph3hGEt1-iNL3k2982LfQ-TKfKCnFjkZC4Ie6_eeSzg
