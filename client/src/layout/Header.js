@@ -12,7 +12,7 @@ const Header = ({ toggleSidebar }) => {
   const navigate = useNavigate();
   const loguot = () => {
     dispatch({
-      type: "SET_AUTH_STAYE",
+      type: "SET_AUTH_STATE",
       paylod: false,
     });
     dispatch({
@@ -23,7 +23,7 @@ const Header = ({ toggleSidebar }) => {
     navigate("/login");
   };
   return (
-    <header className="d-flex p-3">
+    <header className="d-flex p-3 pb-0">
       <div
         className="d-flex justify-content-start mt-2 pt-2"
         onClick={toggleSidebar}
@@ -43,7 +43,7 @@ const Header = ({ toggleSidebar }) => {
         <div className="d-flex align-items-center">
           <input
             type="text"
-            className="form-control mx-1"
+            className="form-control mx-1 header-search"
             placeholder=" Type here..."
             style={{ position: "relative" }}
           />

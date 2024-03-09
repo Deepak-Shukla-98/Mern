@@ -2,8 +2,12 @@ body {
   margin: 0;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+.app{
+  background-color: #F8F9FA;
   height: 100vh;
-  background: '#F8F9FA'
+  width: 100vw;
+  position:fixed
 }
 b{
   font-size:1.7vh;
@@ -23,12 +27,16 @@ input{
 span{
   font-size: 1.7vh;
 }
+a{
+  text-decoration: none !important;
+  color: inherit !important;
+}
 .sidebar {
-  width: 250px;
+  width: 200px;
   height: 80vh;
   position: fixed;
   top: 15%;
-  left: -250px;
+  left: -200px;
   transition: left 0.3s ease;
 }
 
@@ -36,6 +44,13 @@ span{
   left: 0;
 }
 
+.content {
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+}
+.content.open {
+  margin-left: 200px;
+}
 .header {
   /* position: fixed; */
   text-align: center;
@@ -70,15 +85,6 @@ span{
   cursor: pointer;
   white-space: nowrap;
 }
-
-.content {
-  margin-left: 0;
-  transition: margin-left 0.3s ease;
-}
-
-.content.open {
-  margin-left: 250px;
-}
 .form-control{
   margin-bottom: 5px;
 }
@@ -97,4 +103,83 @@ span{
 }
 .cursor-pointer{
   cursor: pointer;
+}
+ul{
+  list-style: none;
+  padding-left: 1.5rem !important;
+}
+li{
+  display: flex;
+  align-items: center; 
+  padding: 10px;
+}
+.sidebar-menu{
+  font-weight: 600;
+  font-size: 2vh;
+  width: 85%;
+  border-radius: 12px;
+  background-color: inherit;
+  transition: background-color 0.5s ease, margin 0.5s ease ; 
+}
+.sidebar-icon{
+  display: flex;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 40%;
+  color: #4FD1C5;
+  background-color: #fff;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  transition: color 0.5s ease, background-color 0.5s ease; 
+}
+.sidebar-menu.active{
+  margin-bottom: 10px;
+  width: 85%;
+  border-radius: 12px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  background-color: #fff;
+}
+.sidebar-icon.active {
+  color: #F8F9FA;
+  background-color: #4FD1C5;
+}
+.card{
+  border: none !important;
+}
+.card.dashbord-cards{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px !important;
+  margin-bottom: 15px;
+  border: none !important;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 1px 2px 0px;
+}
+.dashbord-icon{
+  display: flex;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 40%;
+  color: #F8F9FA;
+  background-color: #4FD1C5;
+  align-items: center;
+  justify-content: center;
+}
+.header-search{
+  position: relative;
+}
+@media only screen and (max-width: 600px) {
+  .sidebar {
+    left: -200px !important;
+    transition: left 0.3s ease;
+  }
+  .content.open {
+    margin-left: 0;
+  }
+  .header-search{
+    display: none !important;
+  }
 }
