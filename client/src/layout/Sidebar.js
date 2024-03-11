@@ -53,7 +53,7 @@ const Sidebar = ({ isOpen }) => {
               </span>{" "}
               RTL
             </li>
-            <h6 className="my-3">Account Pages</h6>
+            <h6 className="m-2">Account Pages</h6>
             <li className={`sidebar-menu ${isActive("/") ? "active" : ""}`}>
               <span className={`sidebar-icon ${isActive("/") ? "active" : ""}`}>
                 <IoPerson size={15} />
