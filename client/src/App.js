@@ -11,6 +11,7 @@ import Profile from "./components/Profile";
 import SignUp from "./components/signup";
 import Footer from "./layout/Footer";
 import Sphere from "./components/sphere/sphere";
+import Loader from "./layout/Loader";
 
 function App() {
   const {
@@ -24,13 +25,14 @@ function App() {
   if (isAuthenticated) {
     return (
       <div className="app">
+        <Loader />
         <Header toggleSidebar={toggleSidebar} />
         <Sidebar isOpen={isSidebarOpen} />
         <div className={`content ${isSidebarOpen ? "open" : ""}`}>
           <Routes>
             <Route path="/home" element={<Home />} />
             <Route path="/profile/:id" element={<Profile />} />
-            <Route path="/sphere" element={<Sphere />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </div>
       </div>
@@ -39,6 +41,7 @@ function App() {
     return (
       <>
         {window.innerWidth > 550 ? <LoginHeader /> : ""}
+        <Loader />
         <Routes>
           <Route path="/" element={<Navigate replace to="/login" />} />
           <Route path="/login" element={<Login />} />

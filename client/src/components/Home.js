@@ -12,13 +12,12 @@ function Home() {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
   const getdata = async () => {
-    let res = await home();
-    if (res.data.length) setData(res?.data);
+    let data = await home();
+    if (data.length) setData(data);
   };
   useEffect(() => {
     getdata();
   }, []);
-  console.log(data);
   return (
     <div className="container-fluid">
       <div className="row">

@@ -21,26 +21,36 @@ const Sidebar = ({ isOpen }) => {
       <div className="">
         <div className="card-body">
           <ul>
-            <li className={`sidebar-menu ${isActive("/home") ? "active" : ""}`}>
-              <span
-                className={`sidebar-icon ${isActive("/home") ? "active" : ""}`}
+            <Link to="/home">
+              <li
+                className={`sidebar-menu ${isActive("/home") ? "active" : ""}`}
               >
-                <IoHome size={15} />
-              </span>{" "}
-              <Link to="/home">Dashboard</Link>
-            </li>
-            <li
-              className={`sidebar-menu ${isActive("/sphere") ? "active" : ""}`}
-            >
-              <span
-                className={`sidebar-icon ${
-                  isActive("/sphere") ? "active" : ""
+                <span
+                  className={`sidebar-icon ${
+                    isActive("/home") ? "active" : ""
+                  }`}
+                >
+                  <IoHome size={15} />
+                </span>{" "}
+                Dashboard
+              </li>
+            </Link>
+            <Link to="/profile">
+              <li
+                className={`sidebar-menu ${
+                  isActive("/profile") ? "active" : ""
                 }`}
               >
-                <IoStatsChartSharp size={15} />
-              </span>{" "}
-              <Link to="/sphere">Tables</Link>
-            </li>
+                <span
+                  className={`sidebar-icon ${
+                    isActive("/profile") ? "active" : ""
+                  }`}
+                >
+                  <IoStatsChartSharp size={15} />
+                </span>{" "}
+                Tables
+              </li>
+            </Link>
             <li className={`sidebar-menu ${isActive("/") ? "active" : ""}`}>
               <span className={`sidebar-icon ${isActive("/") ? "active" : ""}`}>
                 <IoCard size={15} />

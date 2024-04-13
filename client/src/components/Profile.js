@@ -6,15 +6,14 @@ function Profile() {
   const [data, setData] = useState();
   const [edit, setEdit] = useState(false);
   let userId = useParams();
-  console.log(userId);
   const getProfiledata = async () => {
     let res = await getProfile(userId);
-    setData(res.data);
+    setData(res);
   };
   const updateProfiledata = async () => {
     setEdit(false);
     let res = await updateProfile({ id: userId.id, data });
-    setData(res.data);
+    setData(res);
   };
   useEffect(() => {
     getProfiledata();

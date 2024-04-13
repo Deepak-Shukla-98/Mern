@@ -30,17 +30,17 @@ function Login() {
     console.log(error);
   };
   const login = async (values) => {
-    let res = await signIn({ email: values.email, password: values.password });
-    if (!!res?.data?.token) {
+    let data = await signIn({ email: values.email, password: values.password });
+    if (!!data?.token) {
       dispatch({
         type: "SET_AUTH_STATE",
         payload: true,
       });
       dispatch({
         type: "SET_LOGIN_USER",
-        payload: res.data.user,
+        payload: data.user,
       });
-      localStorage.setItem("token", `Bearer ${res.data.token}`);
+      localStorage.setItem("token", `Bearer ${data.token}`);
       navigate("/home");
     }
   };
