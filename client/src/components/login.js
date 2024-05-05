@@ -106,7 +106,7 @@ function Login() {
                         {errors.password && touched.password && errors.password}
                       </span>
                     </div>
-                    <div class="form-check form-switch">
+                    <div className="form-check form-switch">
                       <input
                         className="form-check-input mt-2"
                         type="checkbox"
@@ -115,7 +115,7 @@ function Login() {
                       />
                       <label
                         className="form-check-label"
-                        for="flexSwitchCheckDefault"
+                        htmlFor="flexSwitchCheckDefault"
                       >
                         Remember me
                       </label>
@@ -135,7 +135,7 @@ function Login() {
                         <span
                           className="text-primary cursor-pointer"
                           onClick={() => {
-                            navigate("/signUp");
+                            navigate("/signup");
                           }}
                           style={{ fontSize: "2vh" }}
                         >

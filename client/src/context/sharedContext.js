@@ -4,7 +4,7 @@ export const useSharedContext = () => useContext(SharedContext);
 
 const initialState = {
   user: {},
-  isAuthenticated: !!localStorage.getItem("token"),
+  isAuthenticated: false,
 };
 const SharedReducer = (state, action) => {
   switch (action.type) {
@@ -16,7 +16,7 @@ const SharedReducer = (state, action) => {
     case "SET_AUTH_STATE":
       return {
         ...state,
-        isAuthenticated: action.payload,
+        isAuthenticated: action.payload && !!localStorage.getItem("token"),
       };
   }
 };

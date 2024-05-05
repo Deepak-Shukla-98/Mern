@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Login from "./components/login";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./components/Home";
@@ -12,16 +12,29 @@ import SignUp from "./components/signup";
 import Footer from "./layout/Footer";
 import Sphere from "./components/sphere/sphere";
 import Loader from "./layout/Loader";
+import { withRouter } from "./context/withRouter";
 
-function App() {
+function App(props) {
   const {
-    state: { user, isAuthenticated },
+    state: { isAuthenticated },
+    dispatch,
   } = useSharedContext();
   const [isSidebarOpen, setSidebarOpen] = useState(true);
+
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
   };
 
+  useEffect(() => {
+    if (
+      !["login", "signup"].includes(
+        props.history.location.pathname.split("/")[1]
+      )
+    ) {
+      checkAutoLogin(dispatch);
+    }
+  }, [props.history.location.pathname]);
+  console.log({ isAuthenticated });
   if (isAuthenticated) {
     return (
       <div className="app">
@@ -33,6 +46,7 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/profile/:id" element={<Profile />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="*" element={<Navigate replace to="/home" />} />
           </Routes>
         </div>
       </div>
@@ -40,12 +54,11 @@ function App() {
   } else {
     return (
       <>
-        {window.innerWidth > 550 ? <LoginHeader /> : ""}
         <Loader />
         <Routes>
-          <Route path="/" element={<Navigate replace to="/login" />} />
+          <Route path="*" element={<Navigate replace to="/login" />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/signUp" element={<SignUp />} />
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
         <Footer />
       </>
@@ -53,4 +66,19 @@ function App() {
   }
 }
 
-export default App;
+export default withRouter(App);
+
+export function checkAutoLogin(dispatch) {
+  const tokenDetailsString = localStorage.getItem("token");
+  if (!tokenDetailsString) {
+    dispatch({
+      type: "SET_AUTH_STATE",
+      paylod: false,
+    });
+    return;
+  }
+  dispatch({
+    type: "SET_AUTH_STATE",
+    payload: true,
+  });
+}
