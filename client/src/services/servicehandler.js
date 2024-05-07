@@ -1,3 +1,5 @@
+import { toast } from "react-hot-toast";
+
 export default async function ServiceHandler(response) {
   const spinner = document.getElementById("spinner");
   if (navigator.onLine && !!spinner) {
@@ -12,10 +14,17 @@ export default async function ServiceHandler(response) {
       }
       return data;
     })
-    .catch((err) => {
-      if (!!spinner) {
-        spinner.style.display = "none";
+    .catch(
+      ({
+        response: {
+          data: { error },
+        },
+      }) => {
+        toast.error(error);
+        if (!!spinner) {
+          spinner.style.display = "none";
+        }
+        return error;
       }
-      return err;
-    });
+    );
 }

@@ -20,9 +20,9 @@ export const SignIn = async (req, res) => {
   try {
     const { email, password } = req.body;
     let user = await UserModel.findOne({ email: email });
-    if (!user) return res.json({ msg: "Invaild email" }).status(400);
+    if (!user) return res.status(400).json({ error: "Invaild email" });
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.json({ msg: "Invaild password" }).status(400);
+    if (!isMatch) return res.status(400).json({ error: "Invaild password" });
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     delete user.password;
     res.json({ token, user }).status(200);

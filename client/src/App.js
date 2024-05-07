@@ -13,6 +13,7 @@ import Footer from "./layout/Footer";
 import Sphere from "./components/sphere/sphere";
 import Loader from "./layout/Loader";
 import { withRouter } from "./context/withRouter";
+import { Toaster } from "react-hot-toast";
 
 function App(props) {
   const {
@@ -34,13 +35,14 @@ function App(props) {
       checkAutoLogin(dispatch);
     }
   }, [props.history.location.pathname]);
-  console.log({ isAuthenticated });
+
   if (isAuthenticated) {
     return (
       <div className="app">
         <Loader />
         <Header toggleSidebar={toggleSidebar} />
         <Sidebar isOpen={isSidebarOpen} />
+        <Toaster position="top-right" />
         <div className={`content ${isSidebarOpen ? "open" : ""}`}>
           <Routes>
             <Route path="/home" element={<Home />} />
@@ -55,6 +57,7 @@ function App(props) {
     return (
       <>
         <Loader />
+        <Toaster position="top-right" />
         <Routes>
           <Route path="*" element={<Navigate replace to="/login" />} />
           <Route path="/login" element={<Login />} />
